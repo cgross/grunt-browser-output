@@ -26,8 +26,6 @@ module.exports = function (grunt) {
       },processRequest).listen(options.port);
 
       wss = new WebSocketServer({server:app});
-
-      console.log('STARTED IN SSL MODE');
     }
 
 
