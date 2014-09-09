@@ -7,9 +7,29 @@ module.exports = function (grunt) {
 
   grunt.registerTask('browser_output', 'Redirect grunt output to the browser.', function () {
 
+    var options = this.options({port:37901});
+
     //start server
     var WebSocketServer = ws.Server;
-    var wss = new WebSocketServer({port: 37901});
+
+    var wss;
+    if (!options.ssl){
+      wss = new WebSocketServer({port: options.port});
+    } else {
+      var processRequest = function (req, res) {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.end('Not implemented');
+      };
+      var app = require('https').createServer({
+        key: options.key,
+        cert: options.cert
+      },processRequest).listen(options.port);
+
+      wss = new WebSocketServer({server:app});
+
+      console.log('STARTED IN SSL MODE');
+    }
+
 
     wss.broadcast = function(data) {
       for(var i in this.clients) {

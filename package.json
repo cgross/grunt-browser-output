@@ -1,6 +1,6 @@
 {
   "name": "grunt-browser-output",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Redirect grunt output to the browser.",
   "repository": {
     "type": "git",
