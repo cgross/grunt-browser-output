@@ -22,7 +22,8 @@ module.exports = function (grunt) {
       };
       var app = require('https').createServer({
         key: options.key,
-        cert: options.cert
+        cert: options.cert,
+        passphrase: options.passphrase
       },processRequest).listen(options.port);
 
       wss = new WebSocketServer({server:app});
