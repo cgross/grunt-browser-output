@@ -20,7 +20,7 @@
 
     var protocol = ssl ? 'wss' : 'ws';
 
-    var connection = new WebSocket(protocol + '://localhost:37901');
+    var connection = new WebSocket(protocol + '://' + location.hostname + ':37901');
     connection.onmessage = function(e){
       var data = JSON.parse(e.data);
       var pre = document.querySelector('#grunt-browser-output>pre');
