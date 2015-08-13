@@ -25,7 +25,7 @@
       var data = JSON.parse(e.data);
       var pre = document.querySelector('#grunt-browser-output>pre');
       if (data.line) {
-        $('#grunt-browser-output>pre').append(data.line);
+        document.querySelector('#grunt-browser-output>pre').insertAdjacentHTML('beforeend', data.line);
         pre.scrollTop = pre.scrollHeight;
       }
       if (data.removeLine) {
